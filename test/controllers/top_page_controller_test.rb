@@ -2,15 +2,20 @@ require 'test_helper'
 
 class TopPageControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
-    get top_page_home_url
+    get root_path
     assert_response :success
     assert_select "title", "Incostagram"
   end
   
   test "should get about" do
-    get top_page_about_url
+    get about_path
     assert_response :success
     assert_select "title", "About | Incostagram"
   end
 
+  test "should get contact" do
+    get contact_path
+    assert_response :success
+    assert_select "title", "Contact | Incostagram"
+  end
 end
