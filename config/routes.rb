@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get '/about', to: 'top_page#about'
   get '/contact', to: 'top_page#contact'
   get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   resources :users
   
 end
