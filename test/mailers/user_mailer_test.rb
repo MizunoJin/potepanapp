@@ -8,7 +8,6 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.account_activation(user)
     assert_equal "ようこそIncostagramへ", mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ["noreply@example.com"], mail.from
   end
 
 
