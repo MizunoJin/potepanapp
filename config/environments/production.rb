@@ -68,15 +68,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   host = 'https://incostagram.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
-  # 一旦変数に入れておく
-  name = ENV['SENDGRID_USERNAME']
-  pass = ENV['SENDGRID_PASSWORD']
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => name,
-    :password       => pass,
+    :user_name      => ENV['app188796216@heroku.com'],
+    :password       => ENV['orozhzh81865'],
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
