@@ -2,7 +2,7 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <%= image_tag micropost.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0").processed if micropost.image.attached? %>
+    <%= image_tag micropost.image.variant(gravity: :center, resize:"500x500^", crop:"500x500+0+0").processed if micropost.image.attached? %>
     <%= micropost.content %>
   </span>
   <div id="like-btn-<%= micropost.id %>">

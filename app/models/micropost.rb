@@ -10,12 +10,7 @@ class Micropost < ApplicationRecord
                                       message: "有効なフォーマットではありません" },
                       size:         { less_than: 5.megabytes,
                                       message: "ファイルサイズが大きすぎます" },
-                      presence: true
-  
-    # 表示用のリサイズ済み画像を返す
-  def display_image
-    image.variant(resize_to_limit: [500, 500])
-  end
+                                      presence: true
   
    # ある投稿がいいね済みか調べる
   def liked_by?(user)

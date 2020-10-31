@@ -20,12 +20,10 @@ User.create!(name:  "Example User",
                activated_at: Time.zone.now)
 end
 
-# ユーザーの一部を対象にマイクロポストを生成する
-users = User.order(:created_at).take(6)
-50.times do
-  content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(content: content) }
-end
+#50.times do
+#  content = Faker::Lorem.sentence(word_count: 5)
+#  users.each { |user| user.microposts.create!(content: content) }
+#end
 
 # 以下のリレーションシップを作成する
 users = User.all
@@ -34,3 +32,14 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# ユーザーの一部を対象にマイクロポストを生成する
+users = User.order(:created_at).take(6)
+6.times do
+    content = Faker::Lorem.sentence(word_count: 5)
+    users.each do |user|
+      micropost = user.microposts.build(content:content)
+      micropost.image.attach(io: File.open('app/assets/images/1.jpg'), filename: '1.jpg' )
+      micropost.save
+    end
+end
