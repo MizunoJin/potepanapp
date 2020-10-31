@@ -9,7 +9,8 @@ class Micropost < ApplicationRecord
   validates :image,   content_type: { in: %w[image/jpeg image/png],
                                       message: "有効なフォーマットではありません" },
                       size:         { less_than: 5.megabytes,
-                                      message: "ファイルサイズが大きすぎます" }
+                                      message: "ファイルサイズが大きすぎます" },
+                      presence: true
   
     # 表示用のリサイズ済み画像を返す
   def display_image
