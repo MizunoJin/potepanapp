@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     delete '/add' => 'likes#destroy'
   end
   resources :users
+  get "users/:id/likes" => "users#likes"
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]

@@ -12,6 +12,9 @@
         <%= render 'shared/stats' %>
       </section>
     </aside>
+    
+      <%= link_to("My favarite inco", "/users/#{@user.id}/likes") %>
+    
     <div class="col-md-8">
       <%= render 'follow_form' if logged_in? %>
       <% if @user.microposts.any? %>
