@@ -105,7 +105,7 @@ class User < ApplicationRecord
     if user.blank?
        user = User.new
     end
-    user.uid   = auth.uid
+    # user.uid   = auth.uid
     user.username  = auth.info.name
     user.email = auth.info.email
     user.oauth_token = auth.credentials.token
