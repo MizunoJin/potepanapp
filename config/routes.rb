@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
   resources :users
   get "users/:id/likes" => "users#likes"
+  get "users/:id/password_edit" => "users#password_edit"
+  patch "users/:id/password_update" => "users#password_update"
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts
