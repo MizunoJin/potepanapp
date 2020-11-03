@@ -95,6 +95,24 @@ class UsersController < ApplicationController
     end
   end
   
+  def facebook_login
+  @user = User.from_omniauth(request.env["omniauth.auth"])
+    result = @user.save(context: :facebook_login)
+    if result
+      @user.send_activation_email
+      flash[:info] = "受信したEメールから認証手続きを進めてください"
+      redirect_to root_url
+    else
+      redirect_to auth_failure_path
+    end
+  end
+  
+  #認証に失敗した際の処理
+  def auth_failure 
+    @user = User.new
+    render 'new'
+  end
+
     private
 
     def user_params
