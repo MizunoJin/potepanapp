@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     new_password = params[:user][:new_password]
     new_password_confirmation = params[:user][:new_password_confirmation]
     if @user.authenticate(current_password) && new_password.present? && new_password == new_password_confirmation
-      if @user.update_attributes(password: new_password)
+      if @user.update(password: new_password)
         flash[:success] = "パスワードを変更しました"
         redirect_to @user
       else
