@@ -99,9 +99,8 @@ class UsersController < ApplicationController
   @user = User.from_omniauth(request.env["omniauth.auth"])
     result = @user.save(context: :facebook_login)
     if result
-      @user.send_activation_email
-      flash[:info] = "受信したEメールから認証手続きを進めてください"
-      redirect_to root_url
+      log_in @user
+      redirect_to @user
     else
       redirect_to auth_failure_path
     end
