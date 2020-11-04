@@ -111,6 +111,11 @@ class User < ApplicationRecord
     user
   end
   
+    # 渡されたユーザーでログインする
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+  
     private
 
     # メールアドレスをすべて小文字にする
