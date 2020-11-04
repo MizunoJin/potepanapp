@@ -109,7 +109,7 @@ class UsersController < ApplicationController
   #認証に失敗した際の処理
   def auth_failure 
     @user = User.new
-    render 'home'
+    render 'new'
   end
 
     private
