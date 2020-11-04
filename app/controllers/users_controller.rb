@@ -97,6 +97,7 @@ class UsersController < ApplicationController
   
   def facebook_login
   @user = User.from_omniauth(request.env["omniauth.auth"])
+  binding.pry
     result = @user.save(context: :facebook_login)
     if result
       log_in @user
@@ -109,7 +110,7 @@ class UsersController < ApplicationController
   #認証に失敗した際の処理
   def auth_failure 
     @user = User.new
-    render 'new'
+    render 'home'
   end
 
     private
