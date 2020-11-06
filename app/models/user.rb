@@ -19,7 +19,7 @@ class User < ApplicationRecord
   #validates :email, presence: true, length: {maximum: 255},
   #                  format: { with: VALID_EMAIL_REGEX },
   #                    uniqueness: true
-  has_secure_password
+  #has_secure_password
   #validates :password, presence: true, length: {minimum: 6}, allow_nil: true
   #validates :password, presence: false, on: :facebook_login
   
@@ -116,14 +116,16 @@ class User < ApplicationRecord
   #end
   
   def self.find_or_create_from_auth(auth)
-    uid = auth[:uid]
-    name = auth[:info][:name]
-    email = auth[:info][:email]
-
-    self.find_or_create_by(uid: uid) do |user|
-      user.uid = uid
-      user.name = name
-      user.email = email
+    if  email = auth[:info][:email]
+      uid = auth[:uid]
+      name = auth[:info][:name]
+      self.find_or_create_by(email: email) do |user|
+        user.uid = uid
+        user.name = name
+        user.email = email
+      end
+    else
+      redirect_to auth_failure_path
     end
   end
   

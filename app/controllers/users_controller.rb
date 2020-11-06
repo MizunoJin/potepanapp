@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #                                      :following, :followers, :password_edit, :password_update]
   before_action :correct_user, only: [:edit, :update, :password_edit, :password_update]
   before_action :admin_user,  only: :destroy
-  protect_from_forgery :except => [:password_update]
+  protect_from_forgery :except => [:password_update, :facebook_login]
   
   def new
     @user = User.new
