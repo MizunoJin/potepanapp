@@ -103,7 +103,7 @@ class User < ApplicationRecord
   end
   
   def self.from_omniauth(auth)
-    if user = User.find_by(email: auth.info.email)
+    unless user = User.find_by(email: auth.info.email)
       user = User.new
     end
     binding.pry
