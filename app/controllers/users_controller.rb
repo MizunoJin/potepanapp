@@ -98,7 +98,7 @@ class UsersController < ApplicationController
   def facebook_login
   #@user = User.from_omniauth(request.env["omniauth.auth"])
   @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-    if @user.save
+    if @user
       log_in @user
       redirect_to @user
     else
@@ -130,4 +130,8 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user.admin?
     end
     
+       # 渡されたユーザーでログインする
+    def log_in(user)
+      session[:user_id] = user.id
+    end
 end
