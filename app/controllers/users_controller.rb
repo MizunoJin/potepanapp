@@ -96,9 +96,9 @@ class UsersController < ApplicationController
   end
   
   def facebook_login
-  @user = User.from_omniauth(request.env["omniauth.auth"])
-    result = @user.save(context: :facebook_login)
-    if result
+  #@user = User.from_omniauth(request.env["omniauth.auth"])
+  @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+    if @user
       log_in @user
       redirect_to @user
     else

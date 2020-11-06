@@ -102,16 +102,29 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
-  def self.from_omniauth(auth)
-    unless user = User.find_by(email: auth.info.email)
-      user = User.new
+  #def self.from_omniauth(auth)
+  #  user = User.find_by(email: auth.info.email)
+  #  if 
+  #    user = User.new
+  #  end
+  #  binding.pry
+  #  user.uid   = auth.uid
+  #  user.username  = auth.info.name
+  #  user.email = auth.info.email
+  #  user.oauth_token = auth.credentials.token
+  #  user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  #end
+  
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:username]
+    email = auth[:info][:email]
+
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.name = name
+      user.email = email
     end
-    binding.pry
-    user.uid   = auth.uid
-    user.username  = auth.info.name
-    user.email = auth.info.email
-    user.oauth_token = auth.credentials.token
-    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
   end
   
     private
