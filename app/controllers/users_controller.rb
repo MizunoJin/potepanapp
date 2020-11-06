@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :index, :destroy,
-                                        :following, :followers, :password_edit, :password_update]
+  #before_action :logged_in_user, only: [:edit, :update, :index, :destroy,
+  #                                      :following, :followers, :password_edit, :password_update]
   before_action :correct_user, only: [:edit, :update, :password_edit, :password_update]
   before_action :admin_user,  only: :destroy
   protect_from_forgery :except => [:password_update]
