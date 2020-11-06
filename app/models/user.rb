@@ -124,8 +124,6 @@ class User < ApplicationRecord
         user.name = name
         user.email = email
       end
-    else
-      redirect_to auth_failure_path
     end
   end
   
