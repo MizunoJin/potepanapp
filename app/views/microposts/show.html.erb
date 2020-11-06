@@ -2,4 +2,31 @@
   <ol class="microposts">
     <%= render @micropost %>
   </ol>
+
+ <div id="comments_area">
+    <h2>comments</h2>
+    <% @comments.each do |comment| %>
+      <% if comment.parent_id.present? || comment.id.blank? %>
+        <% next %>
+      <% end %>
+        <hr>
+        <p> <%= comment.user.name %> : <%=comment.content%></p>
+        <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+
+    <% if current_user?(comment.user) %>
+      <%= link_to "delete", "/microposts/#{@micropost.id}/comments/#{comment.id}", method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+
+    <% end %>
+
+  </div>
+    <%= form_with(model:[@micropost,@comment]) do |form| %>
+      <p><label>New Thread</label></p>
+      <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
+      <%= form.hidden_field :micropost_id, value: @micropost.id %>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+    <% end %>
 </div>

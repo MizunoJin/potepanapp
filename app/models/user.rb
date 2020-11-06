@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_microposts, through: :likes, source: :micropost
   has_many :active_relationships, class_name:  "Relationship",
@@ -19,7 +20,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                       uniqueness: true
   has_secure_password
-  #validates :password, presence: true, on: :create, length: {minimum: 6}, allow_nil: true
+  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
   validates :password, presence: false, on: :facebook_login
   
     # 渡された文字列のハッシュ値を返す
@@ -103,6 +104,7 @@ class User < ApplicationRecord
   
   def self.from_omniauth(auth)
     user = User.where('email = ?', auth.info.email).first
+    binding.pry
     if user.blank?
       user = User.new
     end
