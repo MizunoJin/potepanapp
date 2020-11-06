@@ -98,7 +98,6 @@ class UsersController < ApplicationController
   def facebook_login
   #@user = User.from_omniauth(request.env["omniauth.auth"])
   @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-  binding.pry
     if @user
       log_in @user
       redirect_to @user
