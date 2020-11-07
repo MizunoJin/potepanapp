@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: {maximum: 255},
                     format: { with: VALID_EMAIL_REGEX },
                       uniqueness: true
-  has_secure_password validations: false
+  has_secure_password(validations: false)
   validates :password, presence: true,  length: {minimum: 6}, allow_nil: true,  on: [:create, :update]
   validate(on: [:update, :create]) do |record|
     record.errors.add(:password, :blank) unless record.password_digest.present?
@@ -123,15 +123,15 @@ class User < ApplicationRecord
   #end
   
   def self.find_or_create_from_auth(auth)
-    if  email = auth[:info][:email]
+      email = auth[:info][:email]
       uid = auth[:uid]
       name = auth[:info][:name]
       self.find_or_create_by(email: email) do |user|
         user.uid = uid
         user.name = name
         user.email = email
+        user.password = nil
       end
-    end
   end
   
   def create_notification_follow!(current_user)
