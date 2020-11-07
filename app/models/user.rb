@@ -130,7 +130,7 @@ class User < ApplicationRecord
         user.uid = uid
         user.name = name
         user.email = email
-        user.password = nil
+        user.activeted = true
       end
   end
   
@@ -144,7 +144,16 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
+  
+  #user nameを検索
+  def self.search(search) 
+    if search
+      where(['name LIKE ?', "%#{search}%"]) #検索とnameの部分一致を表示。User.は省略
+    else
+      all 
+    end
+  end
+  
     private
 
     # メールアドレスをすべて小文字にする

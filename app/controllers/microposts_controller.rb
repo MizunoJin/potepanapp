@@ -35,6 +35,13 @@ class MicropostsController < ApplicationController
   def edit
   end
   
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @microposts = Micropost.search(params[:search])
+    binding.pry
+    render 'search'
+  end
+  
   private
 
     def micropost_params
