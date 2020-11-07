@@ -29,9 +29,7 @@ Rails.application.routes.draw do
   resources :microposts do
     resources :comments
   end
-  resources :microposts do
-    get :search, on: :collection
-  end
+
   resources :relationships,       only: [:create, :destroy]
   resources :notifications, only: :index
 end
