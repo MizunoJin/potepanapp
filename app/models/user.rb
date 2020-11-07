@@ -21,9 +21,14 @@ class User < ApplicationRecord
   validates :email, presence: true, length: {maximum: 255},
                     format: { with: VALID_EMAIL_REGEX },
                       uniqueness: true
-  has_secure_password
-  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-  validates :password, presence: false, on: :facebook_login
+  has_secure_password validations: false
+  validates :password, presence: true,  length: {minimum: 6}, allow_nil: true,  on: [:create, :update]
+  validate(on: [:update, :create]) do |record|
+    record.errors.add(:password, :blank) unless record.password_digest.present?
+  end
+  validates_length_of :password, maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED, on: [:update, :create]
+  validates_confirmation_of :password, allow_blank: true, on: [:update, :create]
+
   
     # 渡された文字列のハッシュ値を返す
   def User.digest(string)
