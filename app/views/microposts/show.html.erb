@@ -1,8 +1,11 @@
+<% provide(:title, "#{@micropost.user.name}") %>
+
 <div class="container">
   <ol class="microposts">
     <%= render @micropost %>
   </ol>
 
+ 
  <div id="comments_area">
     <h2>comments</h2>
     <% @comments.each do |comment| %>

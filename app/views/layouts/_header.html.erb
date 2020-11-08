@@ -4,9 +4,9 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li>
+          <li id="search">
             <%= form_tag(root_path, :method => 'get') do %>
-              <%= text_field_tag :search, params[:search] %>
+              <%= text_field_tag :search, params[:search], {class: "search-form header-search", placeholder: "検索"} %>
               <%= submit_tag '検索', :name => nil %>
             <% end %>
           </li>

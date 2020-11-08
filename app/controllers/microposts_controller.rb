@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: [:new, :edit, :update, :destroy]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
   before_action :set_post, only: %i[show edit update destroy]
 
   def create
@@ -10,6 +10,7 @@ class MicropostsController < ApplicationController
       flash[:success] = "投稿されました！"
       redirect_to root_url
     else
+      flash[:danger] = "投稿に失敗しました"
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'top_page/home'
     end

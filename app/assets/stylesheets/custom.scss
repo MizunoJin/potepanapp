@@ -88,6 +88,18 @@ p {
   }
 }
 
+#search {
+  height: 28px;
+  min-width: 125px;
+  width: 215px;
+  border-radius: 3px;
+  .search-form {
+  padding: 3px, 10px, 3px, 26px;
+  }
+}
+
+
+
 /* footer */
 
 footer {
