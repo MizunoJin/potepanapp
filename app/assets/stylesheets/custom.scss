@@ -357,3 +357,23 @@ span.image {
   padding-top: 0rem;
   color: #efa04c;
 }
+
+/* user-show */
+
+.showpage-microposts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  li {
+    flex-basis: 30%;
+  }
+}
+
+.showpage-micropost {
+  
+}
+
+.showpage-image {
+  width: 100%;
+}

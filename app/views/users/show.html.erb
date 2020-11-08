@@ -23,10 +23,15 @@
       <%= render 'follow_form' if logged_in? %>
       <% if @user.microposts.any? %>
         <h3>投稿 (<%= @user.microposts.count %>)</h3>
-        <ol class="microposts">
-          <%= render @microposts %>
+        <ol class="microposts showpage-microposts">
+          <% @microposts.each do |micropost| %>
+          <li>
+            <%= link_to(micropost_path(micropost), class: "showpage-micropost") do %>
+              <%= image_tag micropost.image.variant(gravity: :center, resize:"500x500^", crop:"500x500+0+0").processed, class: "showpage-image" if micropost.image.attached? %>
+            <% end %>
+          </li>
+          <% end %>
         </ol>
-        <%= will_paginate @microposts %>
       <% end %>
     </div>
   </div>
