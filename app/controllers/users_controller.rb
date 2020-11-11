@@ -101,6 +101,7 @@ class UsersController < ApplicationController
     if @user.save(context: :facebook_login)
       log_in @user
       redirect_to @user
+      flash[:success] = "Incostagramへようこそ！"
     else
       redirect_to auth_failure_path
     end

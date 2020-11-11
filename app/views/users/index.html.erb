@@ -1,17 +1,17 @@
 <% provide(:title, '全てのユーザー') %>
 
 <div class="container">
-  <h1>All users</h1>
+  <h1>ユーザーを探す</h1>
   
   <%= will_paginate %>
   
-  <!--  検索拡張機能  -->
-  <p>user search</p>
   <%= form_tag(users_path, :method => 'get' ) do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag 'Search', :name => nil %>
+    <%= text_field_tag :search, params[:search], {class: "search-form users-search", placeholder: "検索"} %>
+    <button type="submit">
+      <i class="fas fa-search"></i>
+    </button>
   <% end %>
-
+            
   <ul class="users">
       <%= render @users %>
   </ul>

@@ -88,17 +88,35 @@ p {
   }
 }
 
-#search {
+li.search-li {
   height: 28px;
   min-width: 125px;
   width: 215px;
   border-radius: 3px;
-  .search-form {
-  padding: 3px, 10px, 3px, 26px;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
+.search-form {
+  padding: 3px, 10px, 3px, 26px;
+  width: 50%;
+  margin: 0;
+}
 
+a.header-list {
+  color: black;
+}
+
+ul.navbar-nav > li > a {
+  color: black;
+}
 
 /* footer */
 
@@ -197,7 +215,7 @@ aside {
 }
 
 .gravatar_edit {
-  margin-top: 15px;
+  margin: 15px;
 }
 
 .stats {
@@ -363,17 +381,29 @@ span.image {
 .showpage-microposts {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
   li {
     flex-basis: 30%;
   }
 }
 
-.showpage-micropost {
+.showpage-image {
+  width: 100%;
+}
+
+/* edit */
+
+.edit-account {
   
 }
 
-.showpage-image {
-  width: 100%;
+.edit-password-btn {
+  display: block;
+  text-align: center;
+}
+
+.delete-btn {
+  color: red;
+  display: block;
+  text-align: center;
 }

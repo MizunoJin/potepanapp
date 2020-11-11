@@ -1,11 +1,15 @@
 <% provide(:title, 'プロフィール編集') %>
 <% provide(:button_text, 'Save changes') %>
 <div class="container">
-  <h1>Update your profile</h1>
+  <h1>プロフィール編集</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= render 'profile_form' %>
     </div>
   </div>
-  <%= link_to "パスワードを変更する", "password_edit" %> 
+  <div class="edit-account">
+    <%= link_to "パスワードを変更する", "password_edit", class: "edit-password-btn btn" %>
+    <%= link_to "アカウントを削除する", current_user, method: :delete, class: "delete-btn btn",
+                                    data: { confirm: "アカウントの全ての情報が削除されます。本当に削除しますか？" } %>
+  </div>
 </div>
