@@ -8,36 +8,35 @@
             </button>
           </div>
           <div class="modal-body">
-       　    <div class="container">
-              <ol class="microposts">
                 <%= render micropost %>
-              </ol>
       　       <% @micropost = micropost %>
       　       <% @comments = @micropost.comments %>
         　     <div id="comments_area">
-              <h2>comments</h2>
+              <h2>コメント</h2>
           　   <% @comments.each do |comment| %>
                 <% if comment.parent_id.present? || comment.id.blank? %>
                   <% next %>
                 <% end %>
                 <hr>
-                <p> <%= comment.user.name %> : <%=comment.content%></p>
-                <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+                <% user = comment.user %>
+                <%= gravatar_for user, size: 50 %>
+                <%= link_to "#{user.name}  / #{user.username}", user %>
+                <p> <%=comment.content%></p>
+                <span> <%= time_ago_in_words(comment.created_at) %> ago.</span>
                 <% if current_user?(comment.user) %>
-                  <%= link_to "delete", "/microposts/#{@micropost.id}/comments/#{comment.id}", method: :delete,
+                  <%= link_to "削除", "/microposts/#{@micropost.id}/comments/#{comment.id}", method: :delete,
                                                        data: { confirm: "You sure?" } %>
                 <% end %>
          　　   <% end %>
-            </div>
               <%= form_with(model:[@micropost,@comment]) do |form| %>
-                <p><label>New Thread</label></p>
+                <p><label>新しいコメント</label></p>
                 <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
                 <%= form.hidden_field :micropost_id, value: micropost.id %>
                 <div class="actions">
-                   <%= form.submit %>
+                   <%= form.submit value: "投稿する" %>
                 </div>
-             <% end %>
-          </div>
+                <% end %>
+              </div>
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>

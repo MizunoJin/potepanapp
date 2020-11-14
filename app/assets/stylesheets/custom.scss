@@ -413,6 +413,11 @@ input {
   }
 }
 
+#comments_area {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 aside {
   textarea {
     height: 100px;
@@ -427,8 +432,15 @@ span.image {
   }
 }
 
+.show-micropost {
+  display: flex;
+  justify-content: center; 
+}
 /* like */
 
+.like {
+  margin-left: 60px;
+}
 .like-btn {
   color: #8899a6;
 }

@@ -16,9 +16,8 @@
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-    </aside>
-    
       <%= link_to("お気に入り", "/users/#{@user.id}/likes") %>
+    </aside>
     
     <div class="col-md-8">
       <%= render 'follow_form' if logged_in? %>
