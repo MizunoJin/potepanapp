@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
   validates_length_of :password, maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED, on: [:update, :create]
   validates_confirmation_of :password, allow_blank: true, on: [:update, :create]
-
+  validates :username, presence: true, uniqueness: true, length: {maximum: 20}
   
     # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -148,7 +148,7 @@ class User < ApplicationRecord
   #user nameを検索
   def self.search(search) 
     if search
-      where(['name LIKE ?', "%#{search}%"]) #検索とnameの部分一致を表示。User.は省略
+      where(['(username LIKE ?)', "%#{search}%"]).or(where(['(name LIKE ?)', "%#{search}%"])) 
     else
       all 
     end

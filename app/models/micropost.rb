@@ -76,9 +76,9 @@ class Micropost < ApplicationRecord
 
   def self.search(search)
     if search
-      where(['content LIKE ?', "%#{search}%"]) #検索とcontentの部分一致を表示。Micropost.は省略。
+      where(['content LIKE ?', "%#{search}%"])
     else
-      all #全て表示。Micropost.は省略。
+      all 
     end
   end
   

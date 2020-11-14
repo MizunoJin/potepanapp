@@ -13,4 +13,9 @@ class TopPageController < ApplicationController
   def contact
   end
   
+  def policy
+  end
+  
+  def privacy
+  end
 end

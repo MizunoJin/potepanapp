@@ -10,7 +10,7 @@
         <%= render 'shared/stats' %>
       </section>
     </aside>
-    <h3>Like (<%= @user.likes.count %>)</h3>
+    <h3>Favarite Parrots (<%= @user.likes.count %>)</h3>
     <% @likes.each do |like| %>
       <% micropost = Micropost.find_by(id: like.micropost_id) %>
         <ol class="microposts">
