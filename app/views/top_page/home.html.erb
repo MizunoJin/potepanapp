@@ -19,7 +19,14 @@
     <div class="container">
       <h1>Welcome to Incostagram!</h1>
       <%= link_to "今すぐ登録!", signup_path, class: "btn btn-lg btn-primary" %>
-      <%= link_to "Facebookでログイン", "/auth/facebook", class: "btn btn-primary" %>
+      
+      <%= link_to "/auth/facebook" do %>
+        <bottom class="btn btn-lg btn-primary">
+          <i class="fab fa-facebook-square"></i>
+          Facebookでログイン
+        </bottom>
+      <% end %>
+      
     </div>
   </div>
 <% end %>

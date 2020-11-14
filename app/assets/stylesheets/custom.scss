@@ -63,9 +63,9 @@ p {
 /* header */
 
 #logo {
-  float: left;
   margin-right: 10px;
   font-size: 1.7em;
+  float: left;
   color: black;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -118,6 +118,27 @@ ul.navbar-nav > li > a {
   color: black;
 }
 
+.navbar {
+  margin-bottom: 0;
+  min-height: 0;
+  height: auto;
+}
+
+.navbar-toggler {
+    display: none;
+    font-size: 25px;
+    margin: 5px 5px 0 auto;
+  }
+  
+/* header responsive */
+
+@media all and (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+}
+
+
 /* footer */
 
 footer {
@@ -151,6 +172,8 @@ footer {
   padding: 200px 0 100px;
   color: white;
   background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 600px;
 }
 
 /* about */
@@ -216,6 +239,21 @@ aside {
 
 .gravatar_edit {
   margin: 15px;
+  display: table;
+  a {
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  img {
+    height: 100%;
+  }
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .stats {
@@ -382,8 +420,10 @@ span.image {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   li {
     flex-basis: 30%;
+    border: none;
   }
 }
 
@@ -406,4 +446,9 @@ span.image {
   color: red;
   display: block;
   text-align: center;
+}
+
+/* input */
+.input-mysize {
+  height: 100px !important;
 }
