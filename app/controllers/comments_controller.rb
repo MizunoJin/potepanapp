@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to request.referrer || micropost_path(@comment.micropost) }
         format.js
     end
+    flash[:danger] ='コメントを削除しました'
   end
   
   private

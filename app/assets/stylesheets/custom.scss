@@ -104,6 +104,10 @@ li.search-li {
   align-items: center;
 }
 
+.header-search {
+  margin-bottom: 0;
+}
+
 .search-form {
   padding: 3px, 10px, 3px, 26px;
   width: 50%;
@@ -130,13 +134,41 @@ ul.navbar-nav > li > a {
     margin: 5px 5px 0 auto;
   }
   
+.nav-item-narrow {
+  display: none !important;
+  a {
+    text-align: center;
+  }
+}
+
+.form-inline-narrow {
+  display: flex;
+  max-width: 300px;
+  justify-content: center;
+  margin: 0 auto;
+}
+  
 /* header responsive */
 
 @media all and (max-width: 768px) {
   .navbar-toggler {
     display: block;
   }
+  .nav-item {
+    display: none !important;
+  }
+  .nav-item-narrow {
+    display: block !important;
+  }
+  .form-inline {
+    display: none;
+  }
+  .dropdown-toggle {
+    display: flex !important;
+    justify-content: center;
+  }
 }
+
 
 
 /* footer */

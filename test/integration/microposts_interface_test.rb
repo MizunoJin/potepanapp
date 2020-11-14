@@ -30,9 +30,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(first_micropost)
     end
-    # 違うユーザーのプロフィールにアクセス（削除リンクがないことを確認）
-    get user_path(users(:archer))
-    assert_select 'a', text: '削除', count: 0
   end
   
   

@@ -27,6 +27,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @micropost = Micropost.find_by(id: params[:id])
+    @comment = @micropost.comments.build 
+    @comment_reply = @micropost.comments.build
     redirect_to root_url and return unless @user.activated == true
   end
   

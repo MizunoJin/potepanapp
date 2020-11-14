@@ -26,13 +26,25 @@
         <ol class="microposts showpage-microposts">
           <% @microposts.each do |micropost| %>
           <li>
-            <%= link_to(micropost_path(micropost), class: "showpage-micropost") do %>
+            <a data-toggle="modal" data-target="#exampleModalLong-<%= micropost.id%>">
               <%= image_tag micropost.image.variant(gravity: :center, resize:"500x500^", crop:"500x500+0+0").processed, class: "showpage-image" if micropost.image.attached? %>
-            <% end %>
+            </a>
           </li>
+          
+          <% @micropost=micropost%>
+          <!-- Modal -->
+          <%= render 'microposts/modal', micropost: @micropost %>
+  
           <% end %>
         </ol>
       <% end %>
     </div>
   </div>
+  
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
+  
 </div>
