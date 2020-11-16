@@ -2,7 +2,7 @@
 - visited = notification.visited
 .col-md-6.mx-auto
   .form-inline
-    span
+    span.notice
       = link_to user_path(visitor) do
         = gravatar_for(visitor, size: 50)
         strong
@@ -17,7 +17,7 @@
         = "にいいねしました"
       - when 'comment' then
         - if notification.micropost.user_id == visited.id
-          = link_to "あなたの投稿", notification.post, style: "font-weight: bold;"
+          = link_to "あなたの投稿", notification.micropost, style: "font-weight: bold;"
         - else
           span
             = link_to micropost_path(notification.micropost) do
@@ -26,7 +26,7 @@
                 = notification.micropost.user.name + 'さんの投稿'
         = "にコメントしました"
         p.text-muted.mb-0
-          = Comment.find_by(id: notification.comment_id)&.comment
+          = Comment.find_by(id: notification.comment_id)&.content
 
   .small.text-muted.text-right
     = time_ago_in_words(notification.created_at).upcase
