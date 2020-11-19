@@ -1,0 +1,50 @@
+<% provide(:title, @user.username) %>
+<div class="container">
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.name %> / 
+          <%= @user.username %>
+        </h1>
+        <p>
+          <%= @user.introduction %>
+          <%= @user.website %>
+        </p>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <%= link_to("お気に入り", "/users/#{@user.id}/likes") %>
+    </aside>
+    
+    <div class="col-md-8">
+      <%= render 'follow_form' if logged_in? %>
+      <% if @user.microposts.any? %>
+        <h3>投稿 (<%= @user.microposts.count %>)</h3>
+        <ol class="microposts showpage-microposts">
+          <% @microposts.each do |micropost| %>
+          <li>
+            <a data-toggle="modal" data-target="#exampleModalLong-<%= micropost.id%>">
+              <%= image_tag micropost.image.variant(gravity: :center, resize:"500x500^", crop:"500x500+0+0").processed, class: "showpage-image" if micropost.image.attached? %>
+            </a>
+          </li>
+          
+          <% @micropost=micropost%>
+          <!-- Modal -->
+          <%= render 'microposts/modal', micropost: @micropost %>
+  
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+  
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
+  
+</div>

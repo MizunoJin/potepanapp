@@ -1,0 +1,38 @@
+<% if logged_in? %>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <%= render 'shared/user_info' %>
+        </section>
+        <section class="stats">
+          <%= render 'shared/stats' %>
+        </section>
+      </aside>
+      <div class="col-md-8">
+        <%= render 'shared/feed' %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron" id="incostagram-top">
+    <div class="container">
+      <h1>Welcome to Incostagram!</h1>
+      <%= link_to "今すぐ登録!", signup_path, class: "btn btn-lg btn-primary" %>
+      
+      <%= link_to "/auth/facebook" do %>
+        <bottom class="btn btn-lg btn-primary">
+          <i class="fab fa-facebook-square"></i>
+          Facebookでログイン
+        </bottom>
+      <% end %>
+      
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>

@@ -1,0 +1,10 @@
+<% provide(:title, "通知") %>
+<div class="container">
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <% if notifications.any? %> 
+    <%= render notifications %>
+    <%= will_paginate %>
+  <% else %>
+    <p>通知はありません</p>
+  <% end %>
+</div>

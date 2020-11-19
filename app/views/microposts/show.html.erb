@@ -1,0 +1,36 @@
+<% provide(:title, "#{@micropost.user.name}") %>
+
+<div class="container">
+  <ol class="microposts show-micropost">
+    <%= render @micropost %>
+  </ol>
+   <div id="comments_area">
+      <h2>コメント</h2>
+      <% @comments.each do |comment| %>
+        <% if comment.parent_id.present? || comment.id.blank? %>
+          <% next %>
+        <% end %>
+          <hr>
+          <% user = comment.user %>
+          <%= gravatar_for user, size: 50 %>
+          <%= link_to "#{user.name}  / #{user.username}", user %>
+          <p> <%=comment.content%></p>
+          <span> <%= time_ago_in_words(comment.created_at) %>前</span>
+  
+      <% if current_user?(comment.user) %>
+        <%= link_to "削除", "/microposts/#{@micropost.id}/comments/#{comment.id}", method: :delete,
+                                         data: { confirm: "You sure?" } %>
+      <% end %>
+  
+      <% end %>
+    
+      <%= form_with(model:[@micropost,@comment]) do |form| %>
+        <p><label>新しいコメント</label></p>
+        <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
+        <%= form.hidden_field :micropost_id, value: @micropost.id %>
+          <div class="actions">
+            <%= form.submit value: "投稿する" %>
+          </div>
+       <% end %>
+    </div>
+</div>
